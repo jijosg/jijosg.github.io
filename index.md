@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Jijo, the Overfitter
+title: the Overfitter
 ---
 ***Hi there, I'm Jijo!***
 
