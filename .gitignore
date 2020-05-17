@@ -41,3 +41,5 @@ validation-report.json
 node_modules
 
 Gemfile.lock
+
+.sass_cache/*

@@ -12,6 +12,6 @@ different issues I have faced.
 Before working at EY, I completed my Master's from BITS,Pilani & undergrad
 from College of Engineering, Chengannur.
 
-I created this blog using [Jekyll](https://jekyllrb.com/) and it was inspired from [Tom Preston-Werner](http://github.com/mojombo/jekyll) & [Joshua Lande](https://github.com/joshualande/joshualande.github.io/)
+I created this blog using [Jekyll](http://github.com/mojombo/jekyll) and it was inspired from [Tom Preston-Werner](http://github.com/mojombo/jekyll) & [Joshua Lande](https://github.com/joshualande/joshualande.github.io/)
 
 If you like my website, you can follow me on twitter [@jijo_sunny](https://twitter.com/jijo_sunny).
