@@ -1,8 +1,44 @@
-<h3 class="masthead-title">
-<a href="/" title="Home">{{ site.title }}</a>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
 
-{% for page in site.pages_list %}
-  &nbsp;&nbsp;&nbsp;
-  <small><a href="{{ page[1]  }}">{{ page[0] }}</a></small>
-{% endfor %}
-</h3>
+  {% include head.html %}
+  <body>
+
+    <div class="container content">
+      <div class="masthead">
+        <h3 class="masthead-title">
+          <a href="/" title="Home">{{ site.title }}</a>
+
+          {% for page in site.pages_list %}
+              &nbsp;&nbsp;&nbsp;<small><a href="{{ page[1]  }}">{{ page[0] }}</a></small>
+          {% endfor %}
+
+        </h3>
+      </div>
+
+      {{ content }}
+
+      {% include comments.html %}
+
+      <div class="footer">
+        <p>
+          &copy; {{ site.time | date: '%Y' }}. All rights reserved.
+        </p>
+        <div class="contact">
+          <p>
+            Jijo Sunny George
+            </p>
+        </div>
+        <div class="contact">
+          <p>
+            <a href="http://github.com/jijosg/">github.com/jijosg</a><br />
+            <a href="http://twitter.com/jijo_sunny/">twitter.com/jijo_sunny</a><br />
+          </p>
+        </div>
+      </div>
+      </div>
+    </div>
+
+  </body>
+</html>
+  
