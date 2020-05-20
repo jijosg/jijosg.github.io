@@ -3,8 +3,6 @@ markdown:         kramdown
 kramdown:
   extensions: ["tables"]
 
-highlighter:         true
-
 # Permalinks
 permalink:        pretty
 
