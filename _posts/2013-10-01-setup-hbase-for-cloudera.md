@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Install RStudio in CentOS 6
+title: Setup HBase for Cloudera
 comments: false
 redirect_from: "/2013/10/01/setuphbase/"
 permalink: setup-hbase-cloudera
@@ -8,12 +8,12 @@ permalink: setup-hbase-cloudera
 
 Follow these steps
 
-1. Install `hbase` on all the machines
+### Install `hbase` on all the machines
 ~~~sh
 sudo yum install hbase
 ~~~
 
-2.Install `hbase-master` and `zookeper-server` on your master machine
+### Install `hbase-master` and `zookeper-server` on your master machine
 ~~~sh
 sudo yum install zookeper-server
 sudo yum install hbase-master
@@ -21,15 +21,15 @@ sudo yum install hbase-master
 zookeeper-server automatically installs the base zookeper package also.
 For hbase to start it needs to have zookeeper 
 
-3. Install `hbase-region` server and zookeeper in all your slave machines
+### Install `hbase-region` server and zookeeper in all your slave machines
 ~~~sh
 sudo yum install zookeeper
 sudo yum install hbase-regionserver
 ~~~
 
-4.Modifying the HBase Configuration
+### Modifying the HBase Configuration
 
-To enable pseudo-distributed mode, you must first make some configuration changes. Open `/etc/hbase/conf/hbase-site.xml` in your editor of choice, and insert the following XML properties between the `<configuration> and </configuration>` tags. Be sure to replace myhost with the hostname of your HDFS NameNode (as specified by fs.default.name or fs.defaultFS in your `hadoop/conf/core-site.xml` file); you may also need to change the port number from the default (`8020`).
+To enable *pseudo-distributed* mode, you must first make some configuration changes. Open `/etc/hbase/conf/hbase-site.xml` in your editor of choice, and insert the following XML properties between the `<configuration>` and `</configuration>` tags. Be sure to replace `myhost` with the hostname of your HDFS NameNode (as specified by `fs.default.name` or `fs.defaultFS` in your `hadoop/conf/core-site.xml` file). You may also need to change the port number from the default `8020` to another value.
 ~~~xml
 <property>
   <name>hbase.cluster.distributed</name>
@@ -40,7 +40,7 @@ To enable pseudo-distributed mode, you must first make some configuration change
   <value>hdfs://myhost:8020/hbase</value>
 </property>
 ~~~
-5.Configuring for Distributed Operation
+### Configuring for Distributed Operation
 
 After you have decided which machines will run each process, you can edit the configuration so that the nodes may locate each other. In order to do so, you should make sure that the configuration files are synchronized across the cluster. Cloudera strongly recommends the use of a configuration management system to synchronize the configuration files, though you can use a simpler solution such as rsync to get started quickly.
 
@@ -52,42 +52,41 @@ The only configuration change necessary to move from pseudo-distributed operatio
 </property>
 ~~~
 
-6.Creating the `/hbase` Directory in HDFS
+### Creating the `/hbase` Directory in HDFS
 
 Before starting the HBase Master, you need to create the /hbase directory in HDFS. The HBase master runs as hbase:hbase so it does not have the required permissions to create a top level directory.
 
-To create the /hbase directory in HDFS:
+To create the `/hbase` directory in HDFS:
 ~~~sh
 sudo -u hdfs hadoop fs -mkdir /hbase
 sudo -u hdfs hadoop fs -chown hbase /hbase
 ~~~
-7.Starting the ZooKeeper Server
+
+### Starting the ZooKeeper Server
 To start ZooKeeper after a fresh install:
 ~~~sh
 sudo service zookeeper-server init
 sudo service zookeeper-server start
 ~~~
 
-8.Starting zookeeper
-~~~sh
-sudo service zookeeper start
-~~~
-
-9.Starting the HBase Master
+### Starting the HBase Master
 On Red Hat and SLES systems (using .rpm packages) you can now start the HBase Master by using the included service script:
 ~~~sh
 sudo service hbase-master start
 ~~~
-To start the Region Server:
+
+### Starting the HBase Region Server:
 ~~~sh
 sudo service hbase-regionserver start
 ~~~
 
-10.Accessing HBase by using the HBase Shell
+### Accessing HBase by using the HBase Shell
 After you have started HBase, you can access the database by using the HBase Shell:
 ~~~sh
 hbase shell
 ~~~
+
+Hope this blog helped you in setting up HBase. Please let me know if you have any questions.
 
 For further reference :
 [Cloudera blog](http://www.cloudera.com/content/cloudera-content/cloudera-docs/CDH4/4.2.0/CDH4-Installation-Guide/cdh4ig_topic_20_2.html)
