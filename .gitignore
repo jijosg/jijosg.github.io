@@ -42,4 +42,4 @@ node_modules
 
 Gemfile.lock
 
-.sass_cache/*
+.sass-cache/*
