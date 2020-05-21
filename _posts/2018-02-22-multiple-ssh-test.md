@@ -1,3 +1,11 @@
+---
+layout: post
+title: Testing ssh connectivity to cluster
+comments: false
+redirect_from: "/2013/10/31/sshconnectivity/"
+permalink: multiple-ssh-test
+---
+
 We often encounter infrastructure issues when we start our processing. I had faced this issue often enough that made me do something about it. I thought of testing the connectivity through python since most of our code was on python and it was easier to integrate into the stack.
 
 I researched about many testing libraries and pytest stood out. Paramiko is another library to test ssh connectivity. Combining both of these to analyze whether our infrastructure is ready or not.
@@ -9,7 +17,9 @@ Use case :  check ssh connectivity to multiple clusters in one test
 import paramiko
 import pytest
 
-
+#define server ips to which connectivity is to be tested
+#this method assumes that the username and the key file are same 
+#across all the servers
 @pytest.fixture(params=["ip1.ip1.ip1.ip1", "ip2.ip2.ip2.ip2"])
 def ssh(request):
     ssh = paramiko.SSHClient()
@@ -18,6 +28,8 @@ def ssh(request):
     yield ssh
     ssh.close()
 
+# test connectivity by echoing hello and if the program is able to read
+# the output from the stdout
 def test_hello(ssh):
     stdin, stdout, stderr = ssh.exec_command("echo hello")
     stdin.close()
