@@ -1,7 +1,6 @@
 ---
 layout: post
 title: Testing ssh connectivity to cluster
-comments: false
 redirect_from: "/2013/10/31/sshconnectivity/"
 permalink: multiple-ssh-test
 ---

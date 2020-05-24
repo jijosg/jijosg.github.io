@@ -1,9 +1,9 @@
 ---
 layout: post
-title: Sqoop Views in Netezza to HDFS
-comments: false
+title: "Sqoop Views in Netezza to HDFS"
 redirect_from: "/2013/10/31/sqoopviewsnetezza/"
 permalink: sqoop-views-netezza
+categories: bigdata apache-sqoop netezza 
 ---
 
 I pondered upon a use case to transfer netezza tables/views to hadoop system. The current flow that we are using are :
@@ -18,8 +18,20 @@ And the reverse to transfer to netezza. After analyzing the use case the best op
 ### Transfer view
 *Sqoop* doesnot allow you to write into existing directory so removing the directory before transferring
 ~~~sh
-hdfs dfs -rm -R /apps/hive/warehouse/<hivedbname>.db/<hivetablename>
-sqoop import -Dmapreduce.job.queuename=q1 --hive-import --hive-database <hivedbname> --hive-table <hivetablename> --driver org.netezza.Driver --direct --connect jdbc:netezza://<host>:<port>/<netezzadbname> --username <netezzauser> --password <netezzapwd> --table <netezza tablename> --target-dir hdfs:///apps/hive/warehouse/<hivedbname>.db/<hivetablename> -split-by <anycolumn>
+$ hdfs dfs -rm -R /apps/hive/warehouse/<hivedbname>.db/<hivetablename>
+
+$ sqoop import -Dmapreduce.job.queuename=q1 
+    --hive-import 
+    --hive-database <hivedbname> 
+    --hive-table <hivetablename> 
+    --driver org.netezza.Driver 
+    --direct 
+    --connect jdbc:netezza://<host>:<port>/<netezzadbname> 
+    --username <netezzauser> 
+    --password <netezzapwd> 
+    --table <netezza tablename> 
+    --target-dir hdfs:///apps/hive/warehouse/<hivedbname>.db/<hivetablename> 
+    -split-by <anycolumn>
 ~~~
 
 If we dont use `--driver org.netezza.Driver` parameter the following error is encountered.
@@ -39,10 +51,22 @@ End of LogType:syslog
 Instead of split by option we can also use -m 1 , which transfers the data in one mapper & can be a bit slow.
 
 ### Transfer a table
-#Sqoop doesnot allow you to write into existing directory so removing the directory before transferring
+Sqoop doesnot allow you to write into existing directory so removing the directory before transferring
 ~~~sh
-hdfs dfs -rm -R /apps/hive/warehouse/<hivedbname>.db/<hivetablename>
-sqoop import -Dmapreduce.job.queuename=q1 --verbose --hive-import --hive-database jijo --direct --connect jdbc:netezza://<host>:<port>/<netezzadbname> --username <netezzauser> --password <netezzapwd> --table <netezza tablename> --target-dir hdfs:///apps/hive/warehouse/<hivedbname>.db/<hivetablename> -m 1
+$ hdfs dfs -rm -R /apps/hive/warehouse/<hivedbname>.db/<hivetablename>
+
+$ sqoop import 
+    -Dmapreduce.job.queuename=q1 
+    --verbose 
+    --hive-import 
+    --hive-database jijo 
+    --direct 
+    --connect jdbc:netezza://<host>:<port>/<netezzadbname> 
+    --username <netezzauser> 
+    --password <netezzapwd> 
+    --table <netezza tablename>
+    --target-dir hdfs:///apps/hive/warehouse/<hivedbname>.db/<hivetablename> 
+    -m 1
 ~~~
 
 Running

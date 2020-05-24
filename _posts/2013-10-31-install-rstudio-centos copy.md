@@ -1,7 +1,6 @@
 ---
 layout: post
 title: Install RStudio in CentOS 6
-comments: false
 redirect_from: "/2013/10/31/installcentos/"
 permalink: install-rstudio-in-centos6
 ---

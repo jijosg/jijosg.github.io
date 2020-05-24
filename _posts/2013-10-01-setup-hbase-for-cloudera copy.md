@@ -1,9 +1,10 @@
 ---
 layout: post
 title: Setup HBase for Cloudera
-comments: false
+comments: true
 redirect_from: "/2013/10/01/setuphbase/"
 permalink: setup-hbase-cloudera
+categories: HBase shell cloudera
 ---
 
 Follow these steps
