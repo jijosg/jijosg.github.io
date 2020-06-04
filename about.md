@@ -14,4 +14,4 @@ from College of Engineering, Chengannur.
 
 I created this blog using [Jekyll](http://github.com/mojombo/jekyll) [Minima](https://jekyll.github.io/minima/) theme and it was inspired from [Tom Preston-Werner](http://github.com/mojombo/jekyll) & [Joshua Lande](https://github.com/joshualande/joshualande.github.io/)
 
-If you like my website, you can follow me on twitter [@jijo_sunny](https://twitter.com/jijo_sunny).
+<div class="LI-profile-badge"  data-version="v1" data-size="medium" data-locale="en_US" data-type="horizontal" data-theme="light" data-vanity="jijo-sunny-george-62476027"><a class="LI-simple-link" href='https://in.linkedin.com/in/jijo-sunny-george-62476027?trk=profile-badge'>Jijo Sunny George</a></div>
