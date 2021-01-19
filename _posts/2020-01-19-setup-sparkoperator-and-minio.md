@@ -63,14 +63,13 @@ minio-1607076220   	ClusterIP   	10.96.105.119   	<none>       	 9000/TCP   	3d2
 1. kubectl run -it --rm minio-cli --image=minio/mc --command sh
 ~~~
 Run the following commands inside the container in step 5 and data obtained in step 2,3 & 4
-{% highlight shell linenos %}
+```shell
 export MINIO_ACCESS_KEY=4Wlbo3Up5AGWhszdOcs0
 export MINIO_SECRET_KEY=4vpeZdUhgpDtxGtYMHbjBhxwxj9Yb1LCUtuq8mRL
 export MINIO_HOST=http://<minio-service-name>.<namespace-of-minio-service>.svc.cluster.local:9000
 mc config host add myminio ${MINIO_HOST} ${MINIO_ACCESS_KEY} ${MINIO_SECRET_KEY}
 mc ls myminio
-{% endhighlight %}
-
+```
 Use `mc cp` command to copy data from the container to minio.
 	
 Use `wget` commands to fetch data to container.
