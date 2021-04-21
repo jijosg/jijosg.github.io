@@ -42,29 +42,14 @@ helm install --namespace minio --generate-name minio/minio
 Minio will be installed with its access key & secret key which should be used while connecting to the service
 There is a separate image for minio cli minio/mc which should be used to upload your data to minio or it can be accessed using UI also for which we should do a port forward of the minio service.
 
-The secrets are base64 encoded so we should decode it before use
- 
-~~~shell
-kubectl get secret -n minio
-~~~
-Select the secret with type opaque
-~~~shell
-kubectl get secret -n minio <secret-name> -o json | jq .data.accesskey| sed s/\"//g | base64 -d
-~~~
-~~~shell
-kubectl get secret -n minio <secret-name> -o json | jq .data.secretkey | sed s/\"//g | base64 -d
-k get svc -n minio
-NAME               	TYPE       	CLUSTER-IP	EXTERNAL-IP	PORT(S)	 AGE
-minio-1607076220   	ClusterIP   	10.96.105.119   	<none>       	 9000/TCP   	3d21h
-~~~
-
 #### Move data to minio
 ~~~shell
 ## Setup minio credentials
 1. export MINIO_ACCESSKEY=`kubectl get secret -n minio -l app=minio -o json | jq .data.accesskey | sed s/\"//g | base64 -d`
 2. export MINIO_SECRETKEY=`kubectl get secret -n minio -l app=minio -o json | jq .data.secretkey | sed s/\"//g | base64 -d`
 3. export MINIO_HOST=`kubectl get svc -n minio -l app=minio -ojsonpath='http://{.items[0].metadata.name}:{.items[0].spec.ports[0].targetPort}'`
-4. kubectl run -n minio -it --rm minio-cli --env MINIO_HOST=$MINIO_HOST --env MINIO_ACCESSKEY=$MINIO_ACCESSKEY --env MINIO_SECRETKEY=$MINIO_SECRETKEY --image=minio/mc --command sh
+4. kubectl run -n minio -it --rm minio-cli --env MINIO_HOST=$MINIO_HOST --env MINIO_ACCESSKEY=$MINIO_ACCESSKEY --env MINIO_SECRETKEY=$MINIO_SECRETKEY \
+   --image=minio/mc --command sh
 ~~~
 Run the following commands inside the container in step 4 :
 ```shell
