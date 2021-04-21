@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Setup SparkOperator and Minio in K8s [Draft]
+title: Setup SparkOperator and Minio in K8s
 redirect_from: "/2020/01/19/setupsparkminiok8s/"
 permalink: setup-sparkoperator-minio-k8s
 ---
@@ -60,13 +60,14 @@ minio-1607076220   	ClusterIP   	10.96.105.119   	<none>       	 9000/TCP   	3d2
 
 #### Move data to minio
 ~~~shell
-1. kubectl run -it --rm minio-cli --image=minio/mc --command sh
+## Setup minio credentials
+1. export MINIO_ACCESSKEY=`kubectl get secret -n minio -l app=minio -o json | jq .data.accesskey | sed s/\"//g | base64 -d`
+2. export MINIO_SECRETKEY=`kubectl get secret -n minio -l app=minio -o json | jq .data.secretkey | sed s/\"//g | base64 -d`
+3. export MINIO_HOST=`kubectl get svc -n minio -l app=minio -ojsonpath='http://{.items[0].metadata.name}:{.items[0].spec.ports[0].targetPort}'`
+4. kubectl run -n minio -it --rm minio-cli --env MINIO_HOST=$MINIO_HOST --env MINIO_ACCESSKEY=$MINIO_ACCESSKEY --env MINIO_SECRETKEY=$MINIO_SECRETKEY --image=minio/mc --command sh
 ~~~
-Run the following commands inside the container in step 5 and data obtained in step 2,3 & 4
+Run the following commands inside the container in step 4 :
 ```shell
-export MINIO_ACCESS_KEY=4Wlbo3Up5AGWhszdOcs0
-export MINIO_SECRET_KEY=4vpeZdUhgpDtxGtYMHbjBhxwxj9Yb1LCUtuq8mRL
-export MINIO_HOST=http://<minio-service-name>.<namespace-of-minio-service>.svc.cluster.local:9000
 mc config host add myminio ${MINIO_HOST} ${MINIO_ACCESS_KEY} ${MINIO_SECRET_KEY}
 mc ls myminio
 ```
