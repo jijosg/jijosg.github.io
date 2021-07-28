@@ -15,11 +15,13 @@ configure aborted.
 
 its because X11 is a windows library and to resolve use:
 Ubuntu : 
+{% include codeHeader.html %}
 ~~~sh
 sudo apt-get install libglu1-mesa-dev
 ~~~
 
 Redhat:
+{% include codeHeader.html %}
 ~~~sh
 sudo yum install mesa-libGL-devel mesa-libGLU-devel libpng-devel
 ~~~
