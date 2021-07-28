@@ -1,0 +1,25 @@
+---
+layout: post
+title: "Unable to install R packages rgl & qpcR in sparkR"
+comments: false
+redirect_from: "/2018/02/22/rglqpcR/"
+permalink: R-rgl-qpcR-sparkR
+---
+
+If you encounter such an error while installing the package rgl in sparkR
+~~~sh
+configure: using libpng dynamic linkage checking for X... no 
+configure: error: X11 not found but required, 
+configure aborted.
+~~~sh
+
+its because X11 is a windows library and to resolve use:
+Ubuntu : 
+~~~sh
+sudo apt-get install libglu1-mesa-dev
+~~~sh
+
+Redhat:
+~~~sh
+sudo yum install mesa-libGL-devel mesa-libGLU-devel libpng-devel
+~~~sh
