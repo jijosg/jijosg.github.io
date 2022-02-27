@@ -1,0 +1,80 @@
+site_name: Jijo's blog
+markdown_extensions:
+  - tables
+  - meta
+  - pymdownx.highlight:
+      anchor_linenums: true
+      use_pygments: true
+  - codehilite
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences
+  - pymdownx.critic
+  - pymdownx.caret
+  - pymdownx.keys
+  - pymdownx.mark
+  - pymdownx.tilde
+  - pymdownx.emoji:
+      emoji_index: !!python/name:materialx.emoji.twemoji
+      emoji_generator: !!python/name:materialx.emoji.to_svg
+theme:
+  name: material
+  font:
+    text: Roboto
+  logo: assets/icon48.png
+  icon:
+    repo: fontawesome/brands/git-alt 
+  features:
+    - navigation.instant  
+    - navigation.tracking
+    - navigation.tabs
+    - navigation.expand
+    - navigation.top
+    - toc.follow
+    - header.autohide
+  palette: 
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      toggle:
+        icon: material/toggle-switch-off-outline 
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate 
+      toggle:
+        icon: material/toggle-switch
+        name: Switch to light mode
+repo_url: https://github.com/jijosg/mkdocs-draft
+repo_name: jijosg/mkdocs-draft
+
+plugins:
+  - search
+  - tags:
+      tags_file: tags.md
+  - git-authors
+  - git-revision-date-localized
+
+
+copyright: Copyright &copy; 2021 - 2022 Jijo Sunny George
+extra:
+  social:
+    - icon: fontawesome/brands/twitter 
+      link: https://twitter.com/jijo_sunny
+    - icon: fontawesome/brands/linkedin
+      link: https://linkedin.com/in/jijosgeorge
+    - icon: fontawesome/brands/github
+      link: https://github.com/jijosg
+  generator: false
+nav:
+  - Home: index.md
+  - Blog:
+    - 2020:
+      - Setup SparkOperator and Minio in K8s : blog/2020/01/19.md
+    - 2018:
+      - Testing ssh connectivity to cluster: blog/2018/02/multiple-ssh-test.md
+      - Unable to install R packages rgl & qpcR in sparkR: blog/2018/02/r-rgl-qpcr-sparkr.md
+    - 2017:
+      - Sqoop views using Netezza: blog/2017/07/18.md
+    - 2013:
+      - Install RStudio in CentOS: blog/2013/10/31.md
+      - Create sudo user in CentOS: blog/2013/10/02.md
+      - Setup Hbase in Cloudera: blog/2013/10/01.md
