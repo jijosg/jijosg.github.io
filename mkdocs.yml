@@ -45,7 +45,7 @@ theme:
         name: Switch to light mode
 repo_url: https://github.com/jijosg/jijosg.github.io
 repo_name: jijosg/jijosg.github.io
-
+edit_uri: edit/main/docs/
 plugins:
   - search
   - tags:
