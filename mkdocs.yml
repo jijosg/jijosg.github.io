@@ -43,8 +43,8 @@ theme:
       toggle:
         icon: material/toggle-switch
         name: Switch to light mode
-repo_url: https://github.com/jijosg/mkdocs-draft
-repo_name: jijosg/mkdocs-draft
+repo_url: https://github.com/jijosg/jijosg.github.io
+repo_name: jijosg/jijosg.github.io
 
 plugins:
   - search
