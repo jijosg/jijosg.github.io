@@ -2,13 +2,13 @@
 title: Welcome
 ---
 
-With this blog I intend to help the lonely developers gain some peace of mind by giving insights into the the different issues they might face.  
-I am working as a Software Engineer @ [Ericsson](https://www.ericsson.com/en). 
-I have always been fascinated by technology and especially tools for analysing and interpreting information.
-I want to use this blog to help teach people new skills and the different issues I have faced. I have contributed to the opensource databricks/koalas library which has been merged to Apache Spark 3.1.0.
+Welcome to yet another blog (YAB) 😆 I dont know if thats a thing. 
 
-I created this blog using [Mkdocs](http://mkdocs.org).
+With this blog I intend to keep notes of the issues I have faced and if time permits provide detailed references and guides to new tools and technologies. 
+What you might find here are notes related to ***Distributed Computing and Cloud development.***  
 
-You can find me on 
+You can get in touch with me on 
 [:fontawesome-brands-twitter:](https://twitter.com/jijo_sunny)
 [:fontawesome-brands-linkedin:](https://linkedin.com/in/jijo.s.george)
+
+I created this blog using [Mkdocs](http://mkdocs.org).
