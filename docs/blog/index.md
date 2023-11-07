@@ -2,8 +2,8 @@
 
 ## Content
 - 2023
-    - [Asking Notion AI to write a tutorial on K8s](2023/08/16.md)  
     - [Tkinter not working in wsl2](2023/11/07.md)
+    - [Asking Notion AI to write a tutorial on K8s](2023/08/16.md)  
 - 2022
     - [Process Anchore & Trivy vulnerability outputs](2022/02/03.md)
 - 2021:
